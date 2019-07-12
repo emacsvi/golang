@@ -1,0 +1,1119 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Go语言学习的记录备忘。">
+      
+      
+        <link rel="canonical" href="https://emacsvi.github.io/golang/go知识点/go-map/">
+      
+      
+        <meta name="author" content="emacsvi">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>go-map</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#map" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go语言学习 - emacsvi笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                go-map
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go语言学习 - emacsvi笔记
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="欢迎来到golang进行时" class="md-nav__link">
+      欢迎来到golang进行时
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="关于我" class="md-nav__link">
+      关于我
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Go知识点
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Go知识点
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        go-map
+      </label>
+    
+    <a href="./" title="go-map" class="md-nav__link md-nav__link--active">
+      go-map
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#map_1" title="map声明和初始化" class="md-nav__link">
+    map声明和初始化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_2" title="map元素遍历" class="md-nav__link">
+    map元素遍历
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_3" title="map元素增删改查" class="md-nav__link">
+    map元素增删改查
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_4" title="map的不可比性" class="md-nav__link">
+    map的不可比性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="查找键值" class="md-nav__link">
+    查找键值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_5" title="多维map的坑" class="md-nav__link">
+    多维map的坑
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_6" title="map排序" class="md-nav__link">
+    map排序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_7" title="map并发" class="md-nav__link">
+    map并发
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../go-select使用误区/" title="go-select使用误区" class="md-nav__link">
+      go-select使用误区
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jetbrain家族goland-pycharm-webstorm配置/" title="jetbrains" class="md-nav__link">
+      jetbrains
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Os系统相关
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Os系统相关
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../os系统相关/mkdocs配置记录/" title="mkdocs配置备忘" class="md-nav__link">
+      mkdocs配置备忘
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#map_1" title="map声明和初始化" class="md-nav__link">
+    map声明和初始化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_2" title="map元素遍历" class="md-nav__link">
+    map元素遍历
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_3" title="map元素增删改查" class="md-nav__link">
+    map元素增删改查
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_4" title="map的不可比性" class="md-nav__link">
+    map的不可比性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="查找键值" class="md-nav__link">
+    查找键值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_5" title="多维map的坑" class="md-nav__link">
+    多维map的坑
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_6" title="map排序" class="md-nav__link">
+    map排序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map_7" title="map并发" class="md-nav__link">
+    map并发
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/emacsvi/golang/edit/master/docs/go知识点/go-map.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="map">map概念<a class="headerlink" href="#map" title="Permanent link">&para;</a></h1>
+<p>**Go**语言中<code>map</code>是一种特殊的数据结构：一种元素对(<code>pair</code>)的无序集合，<code>pair</code> 的一个元素是<code>key</code>，对应的另一个元素是<code>value</code>，所以这个结构也称为关联数组或字典。这是一种快速寻找值的理想结构：给定<code>key</code>，对应的<code>value</code>可以迅速定位。</p>
+<p><code>map</code>这种数据结构在其他编程语言中也称为字典(Python)、<code>hash</code> 和<code>HashTable</code> 等。</p>
+<h2 id="map_1">map声明和初始化<a class="headerlink" href="#map_1" title="Permanent link">&para;</a></h2>
+<p><code>map</code>是引用类型，可以使用如下声明：
+<div class="codehilite"><pre><span></span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="nx">KeyType</span><span class="p">]</span><span class="nx">ValueType</span><span class="p">,</span> <span class="nx">initialCapacity</span><span class="p">)</span>
+<span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="nx">KeyType</span><span class="p">]</span><span class="nx">ValueType</span><span class="p">)</span>
+<span class="kd">map</span><span class="p">[</span><span class="nx">KeyType</span><span class="p">]</span><span class="nx">ValueType</span><span class="p">{}</span>
+<span class="kd">map</span><span class="p">[</span><span class="nx">KeyType</span><span class="p">]</span><span class="nx">ValueType</span><span class="p">{</span><span class="nx">key1</span> <span class="p">:</span> <span class="nx">value1</span><span class="p">,</span> <span class="nx">key2</span> <span class="p">:</span> <span class="nx">value2</span><span class="p">,</span> <span class="o">...</span> <span class="p">,</span> <span class="nx">keyN</span> <span class="p">:</span> <span class="nx">valueN</span><span class="p">}</span>
+</pre></div>
+未初始化的<code>map</code>的值是<code>nil</code>。</p>
+<p>用<code>4</code>种方式分别创建数组，其中第一种和第二种的区别在于，有没有指定初始容量，不过使用的时候则无需在意这些，因为map的本质决定了，一旦容量不够，它会自动扩容。示例代码如下:</p>
+<p><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">test1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">map1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="nx">map2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+    <span class="nx">map3</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{}</span>
+    <span class="nx">map4</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">:</span> <span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">:</span> <span class="s">&quot;3&quot;</span><span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">map1</span><span class="p">,</span> <span class="nx">map2</span><span class="p">,</span> <span class="nx">map3</span><span class="p">,</span> <span class="nx">map4</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+<strong>注意</strong>：必须要先初始化才能给<code>map</code>赋值设置元素，不然会引起 <code>panic: assign to entry in nil map</code>。</p>
+<p><code>Map</code>的键可以是任何值，键的类型可以是内置的类型，也可以是结构类型，但是不管怎么样，这个键可以使用<code>==</code>运算符进行比较，所以像切片、函数以及含有切片的结构类型就不能用于<code>Map</code>的键了，因为他们具有引用的语义，不可比较。</p>
+<p>对于<code>Map</code>的值来说，就没有什么限制了，切片这种在键里不能用的，完全可以用在值里。</p>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">ages01</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+        <span class="s">&quot;alice&quot;</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span>
+        <span class="s">&quot;bob&quot;</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">ages02</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+    <span class="nx">ages02</span><span class="p">[</span><span class="s">&quot;chris&quot;</span><span class="p">]</span> <span class="p">=</span><span class="mi">20</span>
+    <span class="nx">ages02</span><span class="p">[</span><span class="s">&quot;paul&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">30</span>
+    <span class="c1">//age01和age02两种初始化的方式等价</span>
+
+    <span class="nx">m1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+    <span class="nx">m2</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+    <span class="c1">//m1和m2创建方式等价，都是创建了一个空的的map，这个时候m1和m2没有任何元素</span>
+
+    <span class="k">for</span> <span class="nx">name</span><span class="p">,</span><span class="nx">age</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ages01</span><span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s\t%d\n&quot;</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="nx">name</span><span class="p">,</span><span class="nx">age</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ages02</span><span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s\t%d\n&quot;</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">null_map</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>     <span class="c1">//声明但未初始化map，此时是map的零值状态（只有一个nil元素）</span>
+    <span class="nx">empty_map</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>   <span class="c1">//创建了初始化了一个空的的map，这个时候empty_map没有任何元素</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">m1</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">m2</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">//true</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">null_map</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">null_map</span> <span class="o">==</span><span class="kc">nil</span><span class="p">)</span>     <span class="c1">//true,此时是map的零值状态(nil)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">empty_map</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">empty_map</span> <span class="o">==</span><span class="kc">nil</span><span class="p">)</span>     <span class="c1">//false,空的的map不等价于nil(map的零值状态)</span>
+    <span class="nx">empty_map</span><span class="p">[</span><span class="s">&quot;test&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">12</span>           <span class="c1">//执行正常，空的的map可以赋值设置元素</span>
+    <span class="nx">null_map</span><span class="p">[</span><span class="s">&quot;test&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">12</span>            <span class="c1">//panic: assignment to entry in nil map，无法给未初始化的map赋值设置元素</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="map_2">map元素遍历<a class="headerlink" href="#map_2" title="Permanent link">&para;</a></h2>
+<p><code>range for</code>可用于遍历<code>map</code>中所有的元素，不过需要注意因为<code>map</code>本身是无序的，因此对于程序的每次执行，不能保证使用<code>range for</code>遍历<code>map</code>的顺序总是一致的。例如：
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">personSalary</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+        <span class="s">&quot;steve&quot;</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
+        <span class="s">&quot;jamie&quot;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;mike&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">9000</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;All items of a map&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">personSalary</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;personSalary[%s] = %d\n&quot;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="map_3">map元素增删改查<a class="headerlink" href="#map_3" title="Permanent link">&para;</a></h2>
+<p>首先这里<code>map</code>元素的增加和修改元素的语法一致，只需要<code>map[K]=V</code>即可。例如：
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">personSalary</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;steve&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">12000</span>     <span class="c1">//增加元素</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;jamie&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">15000</span>    <span class="c1">//增加元素</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;mike&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">9000</span>       <span class="c1">//增加元素</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;map before change&quot;</span><span class="p">,</span> <span class="nx">personSalary</span><span class="p">)</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;mike&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10000</span>    <span class="c1">//修改元素</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;map after change&quot;</span><span class="p">,</span> <span class="nx">personSalary</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//output</span>
+<span class="cm">/*</span>
+<span class="cm">map before change map[steve:12000 jamie:15000 mike:9000]</span>
+<span class="cm">map after change map[steve:12000 jamie:15000 mike:10000]</span>
+<span class="cm">*/</span>
+</pre></div></p>
+<p>删除元素需要使用内置函数<code>delete</code>，该函数根据键来删除一个元素。需要强调<code>delete</code>函数没有返回值，<code>delete</code>函数删除不存在的键也是可以的，只是没有任何作用。例如：
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">personSalary</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+        <span class="s">&quot;steve&quot;</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
+        <span class="s">&quot;jamie&quot;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">personSalary</span><span class="p">[</span><span class="s">&quot;mike&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">9000</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;map before deletion&quot;</span><span class="p">,</span> <span class="nx">personSalary</span><span class="p">)</span>
+    <span class="nb">delete</span><span class="p">(</span><span class="nx">personSalary</span><span class="p">,</span> <span class="s">&quot;steve&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;map after deletion&quot;</span><span class="p">,</span> <span class="nx">personSalary</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//output</span>
+<span class="cm">/*</span>
+<span class="cm">map before deletion map[steve:12000 jamie:15000 mike:9000]  </span>
+<span class="cm">map after deletion map[mike:9000 jamie:15000] </span>
+<span class="cm">*/</span>
+</pre></div>
+查找<code>map</code>中某个元素需要用下面的代码段：
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>  
+<span class="c1">//如果存在则执行  </span>
+<span class="p">}</span> 
+</pre></div>
+这里需要强调下，根据键值索引某个元素时，也会返回两个值：索引到的值和本次索引是否成功(这里可能会因为索数值越界或者索引键值有误而导致索引失败)。</p>
+<p>示例代码如下：
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">ages01</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+        <span class="s">&quot;alice&quot;</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span>
+        <span class="s">&quot;bob&quot;</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="nx">age</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">ages01</span><span class="p">[</span><span class="s">&quot;bo&quot;</span><span class="p">]</span>   <span class="c1">//age才是根据键值索引到的值</span>
+    <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span><span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;索引失败，bo不是map的键值，此时age=%d&quot;</span><span class="p">,</span><span class="nx">age</span><span class="p">)</span>  <span class="c1">//索引失败会返回value的零值，这里是int类型，所以是0</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;索引成功，age=%d&quot;</span><span class="p">,</span><span class="nx">age</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="map_4">map的不可比性<a class="headerlink" href="#map_4" title="Permanent link">&para;</a></h2>
+<p><code>Go</code>语言中<code>map</code>和<code>slice</code>，<code>func</code>一样，不支持<code>==</code>操作符，就是不能直接比较。唯一合法的就是和<code>nil</code>作比较，判断该<code>map</code>是不是零值状态。</p>
+<p>如果想自定义一个函数，来比较两个<code>map</code>是否相等，就可以遍历比较它们的键和值是否完全相等，代码如下：
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">map_equal</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">xv</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">x</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="nx">yv</span><span class="p">,</span> <span class="nx">ok</span><span class="o">:=</span><span class="nx">y</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span> <span class="p">!</span><span class="nx">ok</span> <span class="o">||</span> <span class="nx">yv</span><span class="o">!=</span><span class="nx">xv</span><span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_1">查找键值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>检查一个<code>map</code>中是否有某一个<code>key</code>，使用一个惯用的写法：
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">argsMap</span><span class="p">[</span><span class="s">&quot;key1&quot;</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;key1:&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+<code>argsMap["key1"]</code>表达式多重返回</p>
+<ul>
+<li><code>v</code>是<code>value</code>的值(如果<code>key</code>能够找到)，如果单纯判断<code>key</code>，并不需要<code>value</code>，可以用占位符<code>_</code>占位</li>
+<li><code>ok</code>是<code>bool</code>类型值，如果<code>key</code>能够找到，其为<code>true</code>，否则是<code>false</code></li>
+<li><code>if</code>语句通过<code>ok</code>的结果决定是否进入花括号中。</li>
+</ul>
+<h2 id="map_5">多维map的坑<a class="headerlink" href="#map_5" title="Permanent link">&para;</a></h2>
+<p>在自己的项目里用到了一个二维<code>map</code>，结果第一遍写的时候就碰到了那个<code>nil map</code>的问题。
+一开始的代码是这样的：
+<div class="codehilite"><pre><span></span><span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">][</span><span class="s">&quot;b&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ccc&quot;</span>
+</pre></div>
+后来才想明白如果插新加入的元素也是个<code>map</code>的话需要再次<code>make()</code>!! 修正后的代码如下
+<div class="codehilite"><pre><span></span><span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">c</span><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">c</span>
+</pre></div>
+这时的<code>m["a"]</code>的值就是另一个<code>map</code>了.</p>
+<p>多维度<code>Map</code>的数据存取
+一维情况下的<code>map</code>做存取很简单，而二维以上的情况就得小心了. 先来看一个例子：
+<div class="codehilite"><pre><span></span><span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">c</span><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">c</span>
+<span class="nx">d</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">d</span><span class="p">[</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">d</span>
+</pre></div>
+而这个时候再去查询<code>m["a"]["b"]</code>会发现这个值已经没有了，取而代之的是<code>m["a"]["c"]</code>.
+这是因为<code>b</code>和<code>c</code>都是<code>map[string]int</code>类型的数据，<code>Golang</code> 直接把<code>["a"]</code>里的数据从<code>b</code>替换成了<code>c</code>，而不会递归地添加<code>map</code>中缺失的数据。
+要在<code>m</code>中保留<code>["a"]["b"]</code>和<code>["a"]["c"]</code>，需要一些额外的判断才行：
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">exist</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">];</span> <span class="nx">exist</span> <span class="p">{</span>
+    <span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+    <span class="nx">c</span><span class="p">[</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+    <span class="nx">m</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">c</span>
+<span class="p">}</span>
+</pre></div>
+换句话说，每次创建一个一维<code>map</code>都要<code>make()</code>一次，不然就会<code>panic</code>. 多维<code>map</code>没加一层都要多<code>make()</code>好几次.</p>
+<h2 id="map_6">map排序<a class="headerlink" href="#map_6" title="Permanent link">&para;</a></h2>
+<p>如果想按顺序遍历，可以先对<code>Map</code>中的键排序，然后遍历排序好的键，把对应的值取出来，下面看个例子就明白了。
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">dict</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&quot;王五&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">&quot;张三&quot;</span><span class="p">:</span> <span class="mi">43</span><span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">names</span> <span class="p">[]</span><span class="kt">string</span>
+    <span class="k">for</span> <span class="nx">name</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">dict</span> <span class="p">{</span>
+        <span class="nx">names</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">names</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">sort</span><span class="p">.</span><span class="nx">Strings</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span> <span class="c1">//排序</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">key</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">names</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">dict</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+这个例子里有个技巧，<code>range</code> 一个<code>Map</code>的时候，也可以使用一个返回值，这个默认的返回值就是Map的键。</p>
+<h2 id="map_7">map并发<a class="headerlink" href="#map_7" title="Permanent link">&para;</a></h2>
+<p>哈希表在有并发的场景并不安全：同时读写一个哈希表的后果是不确定的。如果你需要使用<code>goroutines</code>同时对一个哈希表做读写，对哈希表的访问需要通过某种同步机制做协调。一个常用的方法是是使用 <code>sync.RWMutex</code>。</p>
+<p>这个语句声明了一个<code>counter</code>变量，这是一个包含了一个map和sync.RWMutex的匿名结构体。
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">counter</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{</span>
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+    <span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}{</span><span class="nx">m</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)}</span>
+</pre></div>
+读<code>counter</code>前，获取读锁：
+<div class="codehilite"><pre><span></span><span class="nx">counter</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+<span class="nx">n</span> <span class="o">:=</span> <span class="nx">counter</span><span class="p">.</span><span class="nx">m</span><span class="p">[</span><span class="s">&quot;some_key&quot;</span><span class="p">]</span>
+<span class="nx">counter</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;some_key:&quot;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</pre></div>
+写counter前，获取写锁
+<div class="codehilite"><pre><span></span><span class="nx">counter</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="nx">counter</span><span class="p">.</span><span class="nx">m</span><span class="p">[</span><span class="s">&quot;some_key&quot;</span><span class="p">]</span><span class="o">++</span>
+<span class="nx">counter</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+</pre></div></p>
+<p>对应与**sync.Map**的使用接口示例：
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">RegularIntMap</span>
+
+<span class="kd">type</span> <span class="nx">RegularIntMap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+    <span class="nx">internal</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">NewRegularIntMap</span><span class="p">()</span> <span class="o">*</span><span class="nx">RegularIntMap</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">RegularIntMap</span><span class="p">{</span>
+        <span class="nx">internal</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Load</span><span class="p">(</span><span class="nx">key</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">value</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Delete</span><span class="p">(</span><span class="nx">key</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nb">delete</span><span class="p">(</span><span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Store</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="p">=</span> <span class="nx">value</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></p>
+<h1 id="syncmap">sync.Map使用<a class="headerlink" href="#syncmap" title="Permanent link">&para;</a></h1>
+<p>从go1.9开始，sync.Map提供给大家使用，线性安全的map操作。
+<div class="codehilite"><pre><span></span><span class="c1">// 说明： 存储一个设置的键值。</span>
+<span class="nx">Store</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span>
+
+<span class="c1">// 说明： 返回键的现有值(如果存在)，否则存储并返回给定的值，如果是读取则返回true，如果是存储返回false。</span>
+<span class="nx">LoadOrStore</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">actual</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">loaded</span> <span class="kt">bool</span><span class="p">)</span>
+
+<span class="c1">// 说明： 读取存储在map中的值，如果没有值，则返回nil。OK的结果表示是否在map中找到值。</span>
+<span class="nx">Load</span><span class="p">(</span><span class="nx">key</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">value</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span>
+
+<span class="c1">// 说明： 删除键对应的值。</span>
+<span class="nx">Delete</span><span class="p">(</span><span class="nx">key</span> <span class="kd">interface</span><span class="p">{})</span>
+
+<span class="c1">// 说明： 循环读取map中的值。</span>
+<span class="nx">Range</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span><span class="p">)</span>
+</pre></div></p>
+<p>因为<code>for ... range map</code>是内建的语言特性，所以没有办法使用<code>for range</code>遍历<code>sync.Map</code>, 但是可以使用它的**Range**方法，通过回调的方式遍历。</p>
+<p>示例代码：
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">userInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="kt">string</span>
+    <span class="nx">Age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">m</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">LoadOrStore</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;one&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span><span class="p">)</span> <span class="c1">//one false</span>
+
+    <span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span><span class="p">)</span> <span class="c1">//one true</span>
+
+    <span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">LoadOrStore</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;oneone&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span><span class="p">)</span> <span class="c1">//one true</span>
+
+    <span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span><span class="p">)</span> <span class="c1">//one true</span>
+
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;oneone&quot;</span><span class="p">)</span>
+    <span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">vv</span><span class="p">,</span> <span class="nx">ok</span><span class="p">)</span> <span class="c1">// oneone true</span>
+
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;two&quot;</span><span class="p">)</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Range</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">})</span>
+
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Range</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">})</span>
+
+    <span class="nx">map1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">userInfo</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">user1</span> <span class="nx">userInfo</span>
+    <span class="nx">user1</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;ChamPly&quot;</span>
+    <span class="nx">user1</span><span class="p">.</span><span class="nx">Age</span> <span class="p">=</span> <span class="mi">24</span>
+    <span class="nx">map1</span><span class="p">[</span><span class="s">&quot;user1&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">user1</span>
+
+    <span class="kd">var</span> <span class="nx">user2</span> <span class="nx">userInfo</span>
+    <span class="nx">user2</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;Tom&quot;</span>
+    <span class="nx">user2</span><span class="p">.</span><span class="nx">Age</span> <span class="p">=</span> <span class="mi">18</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s">&quot;map_test&quot;</span><span class="p">,</span> <span class="nx">map1</span><span class="p">)</span>
+
+    <span class="nx">mapValue</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;map_test&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">mapValue</span><span class="p">.(</span><span class="kd">interface</span><span class="p">{}).(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">userInfo</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;name:&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_2">性能测试<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>代码结构：
+<div class="codehilite"><pre><span></span> ~/coding/go/sync-map-analysis 
+.
+├── LICENSE
+├── README.md
+├── bench_test.go
+├── main.go
+└── regular.go
+</pre></div>
+regular.go
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">RegularStringMap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+    <span class="nx">internal</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">NewRegularStringMap</span><span class="p">()</span> <span class="o">*</span><span class="nx">RegularStringMap</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">RegularStringMap</span><span class="p">{</span>
+        <span class="nx">internal</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularStringMap</span><span class="p">)</span> <span class="nx">Load</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">value</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularStringMap</span><span class="p">)</span> <span class="nx">Delete</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nb">delete</span><span class="p">(</span><span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularStringMap</span><span class="p">)</span> <span class="nx">Store</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="p">=</span> <span class="nx">value</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">RegularIntMap</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+    <span class="nx">internal</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">NewRegularIntMap</span><span class="p">()</span> <span class="o">*</span><span class="nx">RegularIntMap</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">RegularIntMap</span><span class="p">{</span>
+        <span class="nx">internal</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Load</span><span class="p">(</span><span class="nx">key</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">value</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Delete</span><span class="p">(</span><span class="nx">key</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nb">delete</span><span class="p">(</span><span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">rm</span> <span class="o">*</span><span class="nx">RegularIntMap</span><span class="p">)</span> <span class="nx">Store</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">internal</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="p">=</span> <span class="nx">value</span>
+    <span class="nx">rm</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>main.go
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">regularMapUsage</span><span class="p">()</span>
+    <span class="nx">syncMapUsage</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">regularMapUsage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Regular threatsafe map test&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;---------------------------&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Create the threadsafe map.</span>
+    <span class="nx">reg</span> <span class="o">:=</span> <span class="nx">NewRegularStringMap</span><span class="p">()</span>
+
+    <span class="c1">// Fetch an item that doesn&#39;t exist yet.</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">reg</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value not found for key: `hello`&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Store an item in the map.</span>
+    <span class="nx">reg</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="s">&quot;world&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;added value: `world` for key: `hello`&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Fetch the item we just stored.</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">reg</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;result: `%s` found for key: `hello`\n&quot;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;---------------------------&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">syncMapUsage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sync.Map test (Go 1.9+ only)&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;----------------------------&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Create the threadsafe map.</span>
+    <span class="kd">var</span> <span class="nx">sm</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span>
+
+    <span class="c1">// Fetch an item that doesn&#39;t exist yet.</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">sm</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value not found for key: `hello`&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Store an item in the map.</span>
+    <span class="nx">sm</span><span class="p">.</span><span class="nx">Store</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="s">&quot;world&quot;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;added value: `world` for key: `hello`&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Fetch the item we just stored.</span>
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">sm</span><span class="p">.</span><span class="nx">Load</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;result: `%s` found for key: `hello`\n&quot;</span><span class="p">,</span> <span class="nx">result</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;---------------------------&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_3">参考文献<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/xiangxianghehe/article/details/78790744">go复合数据结构之map</a></li>
+<li><a href="https://blog.csdn.net/guanchunsheng/article/details/79615591">map 查</a></li>
+<li><a href="http://www.cnblogs.com/igloo1986/p/3546337.html">map并发</a></li>
+<li><a href="http://colobu.com/2017/07/11/dive-into-sync-Map/">sync.Map</a></li>
+<li><a href="http://www.nljb.net/default/Golang%E4%B9%8Bv1.9%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84sync.Map/">Golang之v1.9中线程安全的sync.Map</a></li>
+<li><a href="https://medium.com/@deckarep/the-new-kid-in-town-gos-sync-map-de24a6bf7c2c">sync.Map 与 map RWMutex</a></li>
+<li><a href="https://github.com/deckarep/sync-map-analysis">性能测试示例代码 github</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../about/" title="关于我" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                关于我
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../go-select使用误区/" title="go-select使用误区" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                go-select使用误区
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 emacsvi
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/emacsvi" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

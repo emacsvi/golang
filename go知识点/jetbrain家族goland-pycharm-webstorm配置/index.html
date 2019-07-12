@@ -1,0 +1,1042 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Go语言学习的记录备忘。">
+      
+      
+        <link rel="canonical" href="https://emacsvi.github.io/golang/go知识点/jetbrain家族goland-pycharm-webstorm配置/">
+      
+      
+        <meta name="author" content="emacsvi">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>jetbrains</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#jetbrains" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go语言学习 - emacsvi笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                jetbrains
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go语言学习 - emacsvi笔记
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="欢迎来到golang进行时" class="md-nav__link">
+      欢迎来到golang进行时
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="关于我" class="md-nav__link">
+      关于我
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Go知识点
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Go知识点
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../go-map/" title="go-map" class="md-nav__link">
+      go-map
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../go-select使用误区/" title="go-select使用误区" class="md-nav__link">
+      go-select使用误区
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        jetbrains
+      </label>
+    
+    <a href="./" title="jetbrains" class="md-nav__link md-nav__link--active">
+      jetbrains
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pycharm" title="pycharm 修改键盘习惯" class="md-nav__link">
+    pycharm 修改键盘习惯
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="字体" class="md-nav__link">
+    字体
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="自动补全" class="md-nav__link">
+    自动补全
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="自动换行" class="md-nav__link">
+    自动换行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="代码检测" class="md-nav__link">
+    代码检测
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab" title="自动导入以及Tab页功能" class="md-nav__link">
+    自动导入以及Tab页功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" title="import以及注释前增加空格功能" class="md-nav__link">
+    import以及注释前增加空格功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pycharmpython3" title="pycharm设置python3" class="md-nav__link">
+    pycharm设置python3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="代理" class="md-nav__link">
+    代理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webstorm" title="webstorm配置" class="md-nav__link">
+    webstorm配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="简单字符串查询" class="md-nav__link">
+    简单字符串查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-32e-find-in-path-interface" title="利用 C- e (Find in Path...) 查看interface" class="md-nav__link">
+    利用 C- e (Find in Path...) 查看interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmoptions" title="修改vmoptions" class="md-nav__link">
+    修改vmoptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="关于主题" class="md-nav__link">
+    关于主题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="关于同步" class="md-nav__link">
+    关于同步
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="启动不了" class="md-nav__link">
+    启动不了
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" title="利用jar包破解，不要自搭服务器了。" class="md-nav__link">
+    利用jar包破解，不要自搭服务器了。
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Os系统相关
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Os系统相关
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../os系统相关/mkdocs配置记录/" title="mkdocs配置备忘" class="md-nav__link">
+      mkdocs配置备忘
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pycharm" title="pycharm 修改键盘习惯" class="md-nav__link">
+    pycharm 修改键盘习惯
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="字体" class="md-nav__link">
+    字体
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="自动补全" class="md-nav__link">
+    自动补全
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="自动换行" class="md-nav__link">
+    自动换行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="代码检测" class="md-nav__link">
+    代码检测
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab" title="自动导入以及Tab页功能" class="md-nav__link">
+    自动导入以及Tab页功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" title="import以及注释前增加空格功能" class="md-nav__link">
+    import以及注释前增加空格功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pycharmpython3" title="pycharm设置python3" class="md-nav__link">
+    pycharm设置python3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="代理" class="md-nav__link">
+    代理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webstorm" title="webstorm配置" class="md-nav__link">
+    webstorm配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="简单字符串查询" class="md-nav__link">
+    简单字符串查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-32e-find-in-path-interface" title="利用 C- e (Find in Path...) 查看interface" class="md-nav__link">
+    利用 C- e (Find in Path...) 查看interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmoptions" title="修改vmoptions" class="md-nav__link">
+    修改vmoptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="关于主题" class="md-nav__link">
+    关于主题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="关于同步" class="md-nav__link">
+    关于同步
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="启动不了" class="md-nav__link">
+    启动不了
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" title="利用jar包破解，不要自搭服务器了。" class="md-nav__link">
+    利用jar包破解，不要自搭服务器了。
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/emacsvi/golang/edit/master/docs/go知识点/jetbrain家族goland-pycharm-webstorm配置.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="jetbrains">jetbrains家族工具介绍<a class="headerlink" href="#jetbrains" title="Permanent link">&para;</a></h1>
+<p><strong>pycharm</strong> 是我用得比较多的<code>go ide</code>. 因为有时候要写<code>python</code>, 想一个ide搞定。但是最近<code>go1.10</code>出来之后，<code>pycharm</code>不支持。而**goland**终于出了一个试用版本。用了一下很好用。于是记录一下使用的一些快捷键。</p>
+<p>更新：
+这里面包括了 <strong>JetBrains</strong> 家族里面的所有IDEA配置。包括pycharm, goland, webstorm, ide等所有都可以通用。需要安装gototabs插件。</p>
+<hr />
+<h2 id="pycharm">pycharm 修改键盘习惯<a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h2>
+<p>KeyMap选择 <strong>Default copy</strong> , 也就是利用<code>Default</code>来复制进行修改最方便：</p>
+<table>
+<thead>
+<tr>
+<th align="left">组合键</th>
+<th align="left">修改内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ctrl+cmd+]</td>
+<td align="left">Move Caret to Code Block End</td>
+</tr>
+<tr>
+<td align="left">删除</td>
+<td align="left">Move Caret to Line End</td>
+</tr>
+<tr>
+<td align="left">Commnad+Shift+F, <del>Ctrl+\, E</del></td>
+<td align="left">Find in Path...</td>
+</tr>
+<tr>
+<td align="left">Ctrl+\, S</td>
+<td align="left">Find Usages(用法)</td>
+</tr>
+<tr>
+<td align="left">Command+E</td>
+<td align="left">Recent Files</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Command+F</td>
+<td align="left">Toggle Full Screen mode</td>
+</tr>
+<tr>
+<td align="left">Ctrl+T, T</td>
+<td align="left">Back</td>
+</tr>
+<tr>
+<td align="left">Ctrl+]</td>
+<td align="left">Declaration</td>
+</tr>
+<tr>
+<td align="left">Command+[</td>
+<td align="left">Previous Method</td>
+</tr>
+<tr>
+<td align="left">Command+R</td>
+<td align="left">Run...</td>
+</tr>
+<tr>
+<td align="left">Command+1</td>
+<td align="left">Go to TAb #1</td>
+</tr>
+<tr>
+<td align="left">Ctrl+, F</td>
+<td align="left">Project</td>
+</tr>
+<tr>
+<td align="left">Ctrl+, S</td>
+<td align="left">Structure</td>
+</tr>
+<tr>
+<td align="left">Ctrl+\, T</td>
+<td align="left">Search Everywhere</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Command+P</td>
+<td align="left">Previous Occurrence 在Find Usage(查找用法)子窗口中，上一个查找点的快捷键</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Command+N</td>
+<td align="left">Next Occurrence 在Find Usage(查找使用)子窗口中，下一个查找点的快捷键</td>
+</tr>
+<tr>
+<td align="left">Shift+Esc</td>
+<td align="left">这个键不用改，系统默认的。隐藏Active窗口。Hide Active tool Window</td>
+</tr>
+<tr>
+<td align="left">Ctrl+X,3</td>
+<td align="left">这个键不用改， <strong>大屏这个垂直分屏用得比较多，看代码爽啊</strong>。Split Vertically 垂直分屏</td>
+</tr>
+<tr>
+<td align="left">Ctrl+X,2</td>
+<td align="left">这个键不用改，Split Horizontally 水平分屏</td>
+</tr>
+<tr>
+<td align="left">Ctrl+X,1</td>
+<td align="left">这个键也不用改，取消所有分屏，UnSplite All</td>
+</tr>
+<tr>
+<td align="left">Ctrl+W, HJKL</td>
+<td align="left">这个是vim自带的快捷键，分屏后就可以在各个屏之中来回跳转了。</td>
+</tr>
+<tr>
+<td align="left">/\cinitchain</td>
+<td align="left">\c表示set ignorecase; \C 表示smartcase的意思。</td>
+</tr>
+<tr>
+<td align="left">Command+/</td>
+<td align="left">Comment Line 单行注释</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Shift+/</td>
+<td align="left">Block Comment 块注释</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Option+Shift+P</td>
+<td align="left">go fmt project 格式化整个项目的代码</td>
+</tr>
+<tr>
+<td align="left">Ctrl+Option+Shift+F</td>
+<td align="left">go fmt file 格式化文件</td>
+</tr>
+<tr>
+<td align="left">Command+T</td>
+<td align="left">open terminal, close terminal 打开终端</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">字体<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Scheme: Atome one dark</li>
+<li>Font: Go Mono for Powerline <del>Source Code for Powline</del></li>
+<li>size:15</li>
+<li>Line Space:1.4</li>
+<li>取消import代码折叠功能： Editor-&gt;General-&gt;Code Folding-&gt;取消Imports前面的勾即可</li>
+</ul>
+<blockquote>
+<p>字体我一般是这几种换着用：Courier New, Monaco, Menlo, Source Code Pro</p>
+</blockquote>
+<h2 id="_2">自动补全<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Settings &gt;Editor &gt;General &gt;Code Completion    设置智能提示大小写敏感为"None"</p>
+<h2 id="_3">自动换行<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Settins &gt; Editor &gt; General &gt; Soft Wraps &gt; 打开 Soft-warp files: 增加 <code>*.md; *.go</code></p>
+<h2 id="_4">代码检测<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>在ide面板上点击右下角像<code>老人头</code>似的图标设置【代码检测警告提示】等级，建议开启 <strong>Inspections</strong> 检测功能。</p>
+<h2 id="tab">自动导入以及Tab页功能<a class="headerlink" href="#tab" title="Permanent link">&para;</a></h2>
+<p>Settings 》Editor 》General 》Auto Import            设置包自动导入和优化导入
+Settings 》Editor 》General 》Editor Tabs            设置打开的Tab页多行显示及打开的Tab页上限</p>
+<h2 id="import">import以及注释前增加空格功能<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<p>Settings 》Editor 》Code Style 》Go            右侧Other标签页，勾选Add leading space to comments</p>
+<h2 id="pycharmpython3">pycharm设置python3<a class="headerlink" href="#pycharmpython3" title="Permanent link">&para;</a></h2>
+<p>输入interpreter里面点右边的Project Interpreter进行设置。</p>
+<h2 id="_5">代理<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>plugin &gt; htpp... &gt; http proxy 设置http localhost 1023</p>
+<h2 id="webstorm">webstorm配置<a class="headerlink" href="#webstorm" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>react Library</strong> 的支持: Languages &amp; Frameworks &gt;&gt; JavaScript &gt;&gt; Libraries &gt;&gt; Download &gt;&gt; 输入react 找合适的下载。 另外要想支持JSX的话，不要点Library了，直接点他的父类JavaScript之后在右边选择**React JSX**即可。</li>
+</ul>
+<h2 id="_6">简单字符串查询<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>我平时用 <strong>vim</strong> 比较多,最爱vim的快捷键了。最喜欢**/<strong>就直接查找了。但是默认是大小写敏感的。如果想忽略的话，需要输入</strong>\c**才能忽略。
+<div class="codehilite"><pre><span></span>/\cinitchain
+</pre></div></p>
+<h2 id="c-32e-find-in-path-interface">利用 <strong>C- e</strong> (Find in Path...) 查看interface<a class="headerlink" href="#c-32e-find-in-path-interface" title="Permanent link">&para;</a></h2>
+<p>示例：
+<div class="codehilite"><pre><span></span><span class="kd">interface</span> <span class="p">{</span>
+  <span class="nx">SignTx</span><span class="p">(</span><span class="nx">account</span> <span class="nx">Account</span><span class="p">,</span> <span class="nx">tx</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Transaction</span><span class="p">,</span> <span class="nx">chainID</span> <span class="o">*</span><span class="nx">big</span><span class="p">.</span><span class="nx">Int</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Transaction</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>查询用：
+<div class="codehilite"><pre><span></span><span class="sr">//</span> <span class="n">func</span> <span class="p">(</span><span class="n">ks</span> <span class="o">*</span><span class="n">KeyStore</span><span class="p">)</span> <span class="n">SignTx</span><span class="p">(</span><span class="n">a</span> <span class="n">accounts</span><span class="o">.</span><span class="n">Account</span><span class="p">,</span> <span class="n">tx</span> <span class="o">*</span><span class="n">types</span><span class="o">.</span><span class="n">Transaction</span><span class="p">,</span> <span class="n">chainID</span> <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="n">types</span><span class="o">.</span><span class="n">Transaction</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">^</span><span class="n">func</span><span class="o">\</span><span class="n">s</span><span class="o">.*</span><span class="n">SignTx</span><span class="o">\</span><span class="p">(</span><span class="o">.*</span><span class="n">accounts</span><span class="o">.</span><span class="n">Account</span>
+</pre></div>
+正则使用的<code>java</code>的正则：
+<a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">regex</a></p>
+<h2 id="vmoptions">修改vmoptions<a class="headerlink" href="#vmoptions" title="Permanent link">&para;</a></h2>
+<p>修改文件：<code>vim /Applications/GoLand.app/Contents/bin/goland.vmoptions</code>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">-Xms3g</span>
+<span class="l l-Scalar l-Scalar-Plain">-Xmx3g</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:ReservedCodeCacheSize=2g</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:+UseCompressedOops</span>
+<span class="l l-Scalar l-Scalar-Plain">-Dfile.encoding=UTF-8</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:+UseConcMarkSweepGC</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:SoftRefLRUPolicyMSPerMB=50</span>
+<span class="l l-Scalar l-Scalar-Plain">-ea</span>
+<span class="l l-Scalar l-Scalar-Plain">-Dsun.io.useCanonCaches=false</span>
+<span class="l l-Scalar l-Scalar-Plain">-Djava.net.preferIPv4Stack=true</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:+HeapDumpOnOutOfMemoryError</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:-OmitStackTraceInFastThrow</span>
+<span class="l l-Scalar l-Scalar-Plain">-Xverify:none</span>
+
+<span class="l l-Scalar l-Scalar-Plain">-XX:ErrorFile=$USER_HOME/java_error_in_goland_%p.log</span>
+<span class="l l-Scalar l-Scalar-Plain">-XX:HeapDumpPath=$USER_HOME/java_error_in_goland.hprof</span>
+</pre></div></p>
+<h2 id="_7">关于主题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>在GoLand使用了很长一段时间都没有修改过主题。后来发现atom的真的很漂亮，于是又开始折腾主题搭配了。
+- 主题在 <strong>plugin</strong> 里面搜<code>Material Theme UI</code>安装即可。非常好看。再在plugin里面搜<code>Rainglow Color Schemes</code>安装。
+- 最后在 <strong>Color Scheme</strong> 里面选择**Atom One Dark**即可。完美</p>
+<h2 id="_8">关于同步<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>我在公司有个mbp, 在家里也有个mbp, 这样就不用来回背电脑了。腰疼真的再也背不动了。于是需要同步配置文件。
+JetBrains家的IDE所有配置都一样。
+IDEA默认配置文件存放位置</p>
+<ul>
+<li>Windows 保存在 C:/Users/username/.IntelliJIdeaXX (XX表示产品的版本号，当前版本是2018.2)</li>
+<li>Unix/Linux 保存在 ~/.IntelliJIdeaXX (~ 就是/home/目录)</li>
+<li>Mac 保存在 <code>~/Library/Preferences/IntelliJIdeaXX</code></li>
+</ul>
+<p>打开IDEA安装目录C:/Program Files (x86)/JetBrains/IntelliJ IDEA 2016.2/bin/idea.properties，找到第8行，把idea.config.path前面的#号去掉，=号后面的路径修改成之前的配置文件夹的目录，例如IDEA修改为idea.config.path=E:/jianguoyun/IDEA/config。记得把路径中的“\”换成“/”。</p>
+<h2 id="_9">启动不了<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>如果手贱乱破解就会导致像我这样启动不了，那时候只能重新来过了,删除下面配置文件就可以，另外所有JetBrains家族的软件都适合这样：</p>
+<div class="codehilite"><pre><span></span>rm -rf ~/Library/Preferences/GoLand*
+rm -rf ~/Library/Application<span class="se">\ </span>Support/GoLand*
+rm -rf ~/Library/Caches/GoLand*
+rm -rf ~/Library/Logs/GoLand*
+</pre></div>
+
+<h2 id="jar">利用jar包破解，不要自搭服务器了。<a class="headerlink" href="#jar" title="Permanent link">&para;</a></h2>
+<p><a href="https://zhile.io/">zhile博客里面有agent文件</a></p>
+<p>请看最下面的参考文献里面的内容。
+使用方法:
+ 0. 先下载压缩包解压后得到jetbrains-agent.jar，把它放到你认为合适的文件夹内。
+    下载列表地址：<a href="https://zhile.io/files/jetbrains-agent-v2018.2.2.zip">https://zhile.io/files/jetbrains-agent-v2018.2.2.zip</a>
+ 1. 点击你要注册的IDE菜单："Configure|Help" -&gt; "Edit Custom VM Options ..."
+    如果提示是否要创建文件，请点"是|Yes"。
+    路径在:<code>cat ~/Library/Preferences/GoLand2018.2/goland.vmoptions</code>
+ 2. 在打开的vmoptions编辑窗口末行添加："-javaagent:/absolute/path/to/jetbrains-agent.jar"
+    一定要自己确认好路径，填错会导致IDE打不开！！！最好使用绝对路径。
+    如:<br> <code>-javaagent:/Users/liwei/Documents/jetbrains-agent.jar</code>
+ 3. 重启你的IDE。
+ 4. 注册选择License server方式，地址填入：
+    http://[随意填一个域名（可胡编乱造），要求正好正好正好16个字符（不要有:'/', '[', ']'）]
+    例如：<code>http://1234567890ab.com</code>
+ 5. 如果提示错误: 
+    "Error opening zip file or JAR manifest missing : jetbrains-agent.jar"
+    这种情况请试着填上jar文件的绝对路径.
+ X. 或者使用文件：ACTIVATION_CODE.txt 内的注册码激活。
+    如果你需要自定义License name，请加群告知。</p>
+<p><del># 自建License Server服务器</del></p>
+<p><a href="https://jetbrains.tools/">Self deploy license server</a>
+- <code>docker run -d --net=host --restart=always --name jetbrains -p 1212:1212 jbtools/jb</code>
+- Use Link http://{localhost or ip}:1212</p>
+<p>写个docker-compose启动即可
+<div class="codehilite"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">jetbrains</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jbtools/jb</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jetbrains</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;1212:1212&#39;</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="nt">jetbrains_net</span><span class="p">:</span>
+        <span class="nt">ipv4_address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">172.16.244.2</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">jetbrains_net</span><span class="p">:</span>
+    <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridge</span>
+    <span class="nt">ipam</span><span class="p">:</span>
+      <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+      <span class="nt">config</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">subnet</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">172.16.244.0/24</span>
+</pre></div></p>
+<h2 id="_10">参考文献<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/zongyinhu/article/details/54695434">select正解姿势</a></li>
+<li><a href="https://studygolang.com/articles/5224">select误区</a></li>
+<li><a href="http://blog.oneapm.com/apm-tech/426.html">vmoptions</a></li>
+<li><a href="https://github.com/daylerees/colour-schemes#intellij">colour-schemes</a></li>
+<li><a href="https://zhile.io/2018/08/17/jetbrains-license-server-crack.html">利用jar包激活jetbrains-agent.tar</a></li>
+<li><a href="https://gitee.com/pengzhile/jetbrains-agent">注册激活步骤</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../go-select使用误区/" title="go-select使用误区" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                go-select使用误区
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../os系统相关/mkdocs配置记录/" title="mkdocs配置备忘" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                mkdocs配置备忘
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 emacsvi
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/emacsvi" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

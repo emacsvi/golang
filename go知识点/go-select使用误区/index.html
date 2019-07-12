@@ -1,0 +1,864 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Go语言学习的记录备忘。">
+      
+      
+        <link rel="canonical" href="https://emacsvi.github.io/golang/go知识点/go-select使用误区/">
+      
+      
+        <meta name="author" content="emacsvi">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>go-select使用误区</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#select" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go语言学习 - emacsvi笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                go-select使用误区
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://emacsvi.github.io/golang/" title="Go语言学习 - emacsvi笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go语言学习 - emacsvi笔记
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/emacsvi/golang/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    emacsvi/golang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="欢迎来到golang进行时" class="md-nav__link">
+      欢迎来到golang进行时
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="关于我" class="md-nav__link">
+      关于我
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Go知识点
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Go知识点
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../go-map/" title="go-map" class="md-nav__link">
+      go-map
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        go-select使用误区
+      </label>
+    
+    <a href="./" title="go-select使用误区" class="md-nav__link md-nav__link--active">
+      go-select使用误区
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#select_1" title="select语法" class="md-nav__link">
+    select语法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="问题复现" class="md-nav__link">
+    问题复现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="改进1" class="md-nav__link">
+    改进1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="最终解决方式" class="md-nav__link">
+    最终解决方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="另网上一个场景" class="md-nav__link">
+    另网上一个场景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jetbrain家族goland-pycharm-webstorm配置/" title="jetbrains" class="md-nav__link">
+      jetbrains
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Os系统相关
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Os系统相关
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../os系统相关/mkdocs配置记录/" title="mkdocs配置备忘" class="md-nav__link">
+      mkdocs配置备忘
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#select_1" title="select语法" class="md-nav__link">
+    select语法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="问题复现" class="md-nav__link">
+    问题复现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="改进1" class="md-nav__link">
+    改进1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="最终解决方式" class="md-nav__link">
+    最终解决方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="另网上一个场景" class="md-nav__link">
+    另网上一个场景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/emacsvi/golang/edit/master/docs/go知识点/go-select使用误区.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="select">select相关知识<a class="headerlink" href="#select" title="Permanent link">&para;</a></h1>
+<p>select是Go中的一个控制结构，类似于用于通信的switch语句。每个case必须是一个通信操作，要么是发送要么是接收。</p>
+<p>select随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。一个默认的子句应该总是可运行的。</p>
+<h2 id="select_1">select语法<a class="headerlink" href="#select_1" title="Permanent link">&para;</a></h2>
+<p><strong>Go</strong> 编程语言中 <code>select</code> 语句的语法如下：</p>
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">communication</span> <span class="nx">clause</span>  <span class="p">:</span>
+       <span class="nx">statement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>      
+    <span class="k">case</span> <span class="nx">communication</span> <span class="nx">clause</span>  <span class="p">:</span>
+       <span class="nx">statement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> 
+    <span class="cm">/* 你可以定义任意数量的 case */</span>
+    <span class="k">default</span> <span class="p">:</span> <span class="cm">/* 可选 */</span>
+       <span class="nx">statement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>以下描述了 select 语句的语法：</p>
+<ul>
+<li>每个case都必须是一个通信</li>
+<li>所有channel表达式都会被求值</li>
+<li>所有被发送的表达式都会被求值</li>
+<li>如果任意某个通信可以进行，它就执行；其他被忽略。</li>
+<li>如果有多个case都可以运行，Select会随机<code>公平</code>地选出一个执行。其他不会执行。 
+否则：</li>
+<li>如果有default子句，则执行该语句。</li>
+<li>如果没有default字句，select将阻塞，直到某个通信可以运行；Go不会重新对channel或值进行求值。</li>
+</ul>
+<p><strong>示例：</strong>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">c1</span><span class="p">,</span> <span class="nx">c2</span><span class="p">,</span> <span class="nx">c3</span> <span class="kd">chan</span> <span class="kt">int</span>
+   <span class="kd">var</span> <span class="nx">i1</span><span class="p">,</span> <span class="nx">i2</span> <span class="kt">int</span>
+   <span class="k">select</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="nx">i1</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">c1</span><span class="p">:</span>
+         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;received &quot;</span><span class="p">,</span> <span class="nx">i1</span><span class="p">,</span> <span class="s">&quot; from c1\n&quot;</span><span class="p">)</span>
+      <span class="k">case</span> <span class="nx">c2</span> <span class="o">&lt;-</span> <span class="nx">i2</span><span class="p">:</span>
+         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;sent &quot;</span><span class="p">,</span> <span class="nx">i2</span><span class="p">,</span> <span class="s">&quot; to c2\n&quot;</span><span class="p">)</span>
+      <span class="k">case</span> <span class="nx">i3</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="p">(</span><span class="o">&lt;-</span><span class="nx">c3</span><span class="p">):</span>  <span class="c1">// same as: i3, ok := &lt;-c3</span>
+         <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;received &quot;</span><span class="p">,</span> <span class="nx">i3</span><span class="p">,</span> <span class="s">&quot; from c3\n&quot;</span><span class="p">)</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;c3 is closed\n&quot;</span><span class="p">)</span>
+         <span class="p">}</span>
+      <span class="k">default</span><span class="p">:</span>
+         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;no communication\n&quot;</span><span class="p">)</span>
+   <span class="p">}</span>    
+<span class="p">}</span>
+</pre></div></p>
+<p>以上代码执行结果为：
+<div class="codehilite"><pre><span></span>no communication
+</pre></div></p>
+<h2 id="_1">问题复现<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">add</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="p">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// timeout problem recurrent</span>
+<span class="kd">func</span> <span class="nx">test2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">add</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;timeout&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">case</span> <span class="nx">t</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">// if ch not empty, time.After will nerver exec</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds ...&quot;</span><span class="p">)</span>
+                <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds end...&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>根据条件5：如果有多个case都可以运行，Select会随机公平地选出一个执行。其他不会执行。 
+但是运行上述代码，当ch通道中存在数据时，<code>time.After</code>总是得不到运行，因此到时超时未生效（就像是两个case都成立时，select 都"公平"地选择了 <code>case &lt;- ch</code>，导致超时逻辑未生效）</p>
+<h2 id="1">改进1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">test3</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="k">defer</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">add</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">t</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">// if ch not empty, time.After will nerver exec</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds ...&quot;</span><span class="p">)</span>
+                <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds end...&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;timeout&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="k">default</span><span class="p">:</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>改进1 随机性失败 
+当<code>case &lt;- ch</code> 和 <code>case &lt;- ticker.C</code> 同时成立时，**Select**会随机公平地选出一个执行，有可能选择到前者，导致超时随机行失败</p>
+<h2 id="_2">最终解决方式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span><span class="c1">// final solution</span>
+<span class="kd">func</span> <span class="nx">test4</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="k">defer</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">add</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">t</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span> <span class="c1">// if ch not empty, time.After will nerver exec</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds ...&quot;</span><span class="p">)</span>
+                <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;sleep one seconds end...&quot;</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span> <span class="c1">// forbid block</span>
+        <span class="p">}</span>
+        <span class="k">select</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;timeout&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">default</span><span class="p">:</span> <span class="c1">// forbid block</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+一定要记得每个<code>select</code>后面加上<code>default</code>语句。 将【超时】和【收包】放在**各自单独**的select里面，【超时】一定可以执行到.</p>
+<h2 id="_3">另网上一个场景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>上周末参加Go技术聚会，京东的美女工程师讲到一个<code>select-case</code>和<code>time.Ticker</code>的使用注意事项（真实的应用场景是:在测试收包的顺序的时候，加了个tick就发现丢包了），觉得很有意思，记录一下。</p>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;runtime&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">runtime</span><span class="p">.</span><span class="nx">GOMAXPROCS</span><span class="p">(</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">NumCPU</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;val:%d\n&quot;</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}(</span><span class="nx">ch</span><span class="p">)</span>
+
+    <span class="nx">tick</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span><span class="p">:</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tick</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: case &lt;-tick.C\n&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+        <span class="p">}</span>   
+
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+    <span class="nx">tick</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>输出如下:
+<div class="codehilite"><pre><span></span>val:0
+val:1
+val:2
+val:3
+val:4
+val:5
+<span class="m">6</span>: <span class="k">case</span> &lt;-tick.C
+val:7
+val:8
+val:9
+<span class="m">10</span>: <span class="k">case</span> &lt;-tick.C
+val:11
+val:12
+val:13
+val:14
+<span class="m">15</span>: <span class="k">case</span> &lt;-tick.C
+val:16
+val:17
+val:18
+val:19
+</pre></div></p>
+<p>问题出在这个<code>select</code>里面：
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span><span class="p">:</span>
+  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tick</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: case &lt;-tick.C\n&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+当两个case条件都满足的时候，运行时系统会通过一个伪随机的算法决定哪个case将会被执行
+所以当<code>tick.C</code>条件满足的那个循环，有某种概率造成<code>ch&lt;-i</code>没有发送(虽然通道两端没有阻塞，满足发送条件)</p>
+<p>解决方案1: 一旦<code>tick.C</code>随机的case被随机到，就多执行一次<code>ch&lt;-i</code> (不体面，如果有多个case就不通用了)
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span><span class="p">:</span>
+  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tick</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: case &lt;-tick.C\n&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>解决方案2: 将<code>tick.C</code>的case单独放到一个<code>select</code>里面，并加入一个<code>default</code>（保证不阻塞）
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span><span class="p">:</span>
+<span class="p">}</span>
+<span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tick</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: case &lt;-tick.C\n&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+  <span class="k">default</span><span class="p">:</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>两种解决方案的输出都是希望的结果：
+<div class="codehilite"><pre><span></span>val:0
+val:1
+val:2
+val:3
+val:4
+<span class="m">5</span>: <span class="k">case</span> &lt;-tick.C
+val:5
+val:6
+val:7
+val:8
+val:9
+<span class="m">10</span>: <span class="k">case</span> &lt;-tick.C
+val:10
+val:11
+val:12
+val:13
+val:14
+<span class="m">15</span>: <span class="k">case</span> &lt;-tick.C
+val:15
+val:16
+val:17
+val:18
+val:19
+</pre></div></p>
+<h2 id="_4">参考文献<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/zongyinhu/article/details/54695434">select正解姿势</a></li>
+<li><a href="https://studygolang.com/articles/5224">select误区</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../go-map/" title="go-map" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                go-map
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../jetbrain家族goland-pycharm-webstorm配置/" title="jetbrains" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                jetbrains
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 emacsvi
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/emacsvi" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
